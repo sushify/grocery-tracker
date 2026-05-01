@@ -62,4 +62,3 @@ Your annotations (names, categories, brands, notes, package sizes, compare group
 ## Categories
 
 Produce · Meat · Seafood · Dairy · Eggs · Bread & Bakery · Pantry Staples · Snacks · Beverages · Frozen · Baby (Diapers/Wipes) · Baby (Food) · Health & Medicine · Beauty & Personal Care · Cleaning & Household · Paper Products · Kitchen Supplies · Laundry · Gift Cards · Clothing · Electronics · Toys & Kids · Pets · Other
-# grocery-tracker
