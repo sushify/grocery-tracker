@@ -1213,7 +1213,8 @@ function ItemsTab({
       ppu: qd?.qty ? avg / qd.qty : null,
       unit: qd?.unit,
       organic: md.organic,
-      brand: md.brand || ""
+      brand: md.brand || "",
+      lastDate: data.appearances[data.appearances.length - 1]?.date || ""
     };
   }), [catalog, names, cats, quantities, meta, purchaseQty]);
   const filtered = React.useMemo(() => {
@@ -1222,7 +1223,7 @@ function ItemsTab({
       const q = search.toLowerCase();
       list = list.filter(i => i.name.toLowerCase().includes(q) || i.num.includes(q) || i.cat.toLowerCase().includes(q) || i.brand.toLowerCase().includes(q));
     }
-    if (sortBy === "freq") list.sort((a, b) => b.count - a.count);else if (sortBy === "price") list.sort((a, b) => b.avg - a.avg);else if (sortBy === "name") list.sort((a, b) => a.name.localeCompare(b.name));
+    if (sortBy === "freq") list.sort((a, b) => b.count - a.count);else if (sortBy === "price") list.sort((a, b) => b.avg - a.avg);else if (sortBy === "name") list.sort((a, b) => a.name.localeCompare(b.name));else if (sortBy === "recent") list.sort((a, b) => b.lastDate.localeCompare(a.lastDate));
     return list;
   }, [itemList, search, sortBy]);
   if (selected) return /*#__PURE__*/React.createElement(ItemDetail, {
@@ -1250,9 +1251,10 @@ function ItemsTab({
     style: {
       display: "flex",
       gap: 6,
-      marginBottom: 12
+      marginBottom: 12,
+      flexWrap: "wrap"
     }
-  }, [["freq", "Most bought"], ["price", "Highest price"], ["name", "A-Z"]].map(([k, l]) => /*#__PURE__*/React.createElement("button", {
+  }, [["freq", "Most bought"], ["recent", "Recent"], ["price", "Highest price"], ["name", "A-Z"]].map(([k, l]) => /*#__PURE__*/React.createElement("button", {
     key: k,
     onClick: () => setSortBy(k),
     style: {
