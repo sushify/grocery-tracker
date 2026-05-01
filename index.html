@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#4a7a9b">
 <title>Grocery Tracker</title>
 <link rel="manifest" href="manifest.json">
@@ -20,10 +19,21 @@
 <body>
 <div id="root"><div class="loading">Loading Grocery Tracker...</div></div>
 
+<!-- React core -->
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+
+<!-- Recharts peer dependencies -->
+<script src="https://unpkg.com/prop-types/prop-types.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-is/umd/react-is.production.min.js" crossorigin></script>
+
+<!-- Recharts -->
+<script src="https://unpkg.com/recharts/umd/Recharts.min.js" crossorigin></script>
+
+<!-- Google auth (async, not blocking) -->
 <script src="https://accounts.google.com/gsi/client" async></script>
+
+<!-- App -->
 <script src="data.js"></script>
 <script src="app.js"></script>
 </body>
