@@ -2118,7 +2118,14 @@ function GroceryTracker() {
       if (SheetsAPI.token) {
         if (saveTimer.current) clearTimeout(saveTimer.current);
         saveTimer.current = setTimeout(() => {
-          SheetsAPI.writeAllEdits(next);
+          setStatus("saving to cloud...");
+          SheetsAPI.writeAllEdits(next).then(() => {
+            setStatus("cloud saved ✓");
+            setTimeout(() => setStatus(""), 2000);
+          }).catch((err) => {
+            setStatus("cloud save failed");
+            setTimeout(() => setStatus(""), 3000);
+          });
         }, 2000);
       }
       return next;
@@ -2197,25 +2204,20 @@ function GroceryTracker() {
       fontSize: 10,
       color: "#bbb"
     }
-  }, status), !signedIn ? /*#__PURE__*/React.createElement("button", {
+  }, status), /*#__PURE__*/React.createElement("button", {
     onClick: handleSignIn,
     style: {
       padding: "6px 12px",
       borderRadius: 8,
-      background: "#4a7a9b",
-      color: "#fff",
-      border: "none",
+      background: signedIn ? "#e6f4e8" : "#4a7a9b",
+      color: signedIn ? "#2d7a3a" : "#fff",
+      border: signedIn ? "1px solid #2d7a3a" : "none",
       fontSize: 11,
       cursor: "pointer",
       fontWeight: 500,
       whiteSpace: "nowrap"
     }
-  }, "Sync \u2601\uFE0F") : /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 11,
-      color: "#2d7a3a"
-    }
-  }, "\u2601\uFE0F \u2713")))), /*#__PURE__*/React.createElement("div", {
+  }, signedIn ? "\u2601\uFE0F Synced" : "Sync \u2601\uFE0F")))), /*#__PURE__*/React.createElement("div", {
     style: {
       maxWidth: 600,
       margin: "0 auto",
